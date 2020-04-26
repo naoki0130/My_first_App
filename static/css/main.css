@@ -5983,7 +5983,7 @@ body header.sticky {
 	box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 body header.sticky .navbar-nav > li > a {
-	padding-top: 25px;
+	padding-top: 10px;
 	padding-bottom: 20px;
 	transition: 0.8s;
 	z-index: 999;
