@@ -1,6 +1,7 @@
 from django.urls import path, include
-
 from django.contrib import admin
+from django.conf import settings  # メディア
+from django.conf.urls.static import static  # メディア
 
 admin.autodiscover()
 
@@ -18,5 +19,10 @@ urlpatterns = [
     path("", include("account.urls")),
     path("", include("features.urls")),
     path("", include("contact.urls")),
+    path('album/', include('album.urls')),
     path("admin/", admin.site.urls),
 ]
+
+# 開発環境次のみDjangoアプリケーション側でメディアファイルを配信
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

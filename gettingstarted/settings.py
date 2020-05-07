@@ -38,12 +38,16 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    'cloudinary_storage',
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
     "account.apps.AccountConfig",
     "features.apps.FeaturesConfig",
     "contact.apps.ContactConfig",
+    "album.apps.AlbumConfig",
     "crispy_forms",
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -67,6 +71,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
+                'django.template.context_processors.media',
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ]
@@ -82,7 +87,7 @@ WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE" : "django.db.backends.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3")
     }
 }
@@ -126,3 +131,16 @@ LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
 
 django_heroku.settings(locals())
+
+# メディアファイル関連
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# クラウドサービス
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hpexam4rc',
+    'API_KEY': '572933729732336',
+    'API_SECRET': 'RI2hWoQTUUkCIDHI82r0nPIMees'
+}
